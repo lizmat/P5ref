@@ -2,6 +2,9 @@ Revision history for P5ref
 
 {{$NEXT}}
 
+0.0.5  2019-11-10T14:39:58+01:00
+    - Changed Perl 6 to Raku, and Perl 5 to Perl
+
 0.0.4  2018-05-18T14:36:17+02:00
     - Add authority information
     - Make checking much stricter: instead of smartmatching, use identity

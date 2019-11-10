@@ -1,6 +1,6 @@
 use v6.c;
 
-unit module P5ref:ver<0.0.4>:auth<cpan:ELIZABETH>;
+unit module P5ref:ver<0.0.5>:auth<cpan:ELIZABETH>;
 
 proto sub ref(|) is export {*}
 multi sub ref() { ref CALLERS::<$_> }
@@ -25,7 +25,7 @@ multi sub ref(\this) {
 
 =head1 NAME
 
-P5ref - Implement Perl 5's ref() built-in
+P5ref - Implement Perl's ref() built-in
 
 =head1 SYNOPSIS
 
@@ -51,7 +51,7 @@ P5ref - Implement Perl 5's ref() built-in
 
 =head1 DESCRIPTION
 
-This module tries to mimic the behaviour of the C<ref> of Perl 5 as closely as
+This module tries to mimic the behaviour of the C<ref> of Perl as closely as
 possible.
 
 =HEAD1 ORIGINAL PERL 5 DOCUMENTATION
@@ -111,9 +111,9 @@ possible.
 =head2 Types not supported
 
 The following strings are currently never returned by C<ref> because they have
-no sensible equivalent in Perl 6: C<REF>, C<GLOB>, C<LVALUE>, C<FORMAT>, C<IO>.
+no sensible equivalent in Raku: C<REF>, C<GLOB>, C<LVALUE>, C<FORMAT>, C<IO>.
 
-Also, since everything in Perl 6 is a (blessed) object, you can only get the
+Also, since everything in Raku is a (blessed) object, you can only get the
 C<SCALAR> response if you managed to put a Scalar container into another
 Scalar container (which is pretty hard), or you somehow have gotten ahold of
 a Proxy object.  On all other cases, a Scalar container will be ignored and
@@ -128,9 +128,9 @@ Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018 Elizabeth Mattijsen
+Copyright 2018-2019 Elizabeth Mattijsen
 
-Re-imagined from Perl 5 as part of the CPAN Butterfly Plan.
+Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
