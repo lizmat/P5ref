@@ -1,6 +1,6 @@
-use v6.c;
+use v6.d;
 
-unit module P5ref:ver<0.0.5>:auth<cpan:ELIZABETH>;
+unit module P5ref:ver<0.0.6>:auth<cpan:ELIZABETH>;
 
 proto sub ref(|) is export {*}
 multi sub ref() { ref CALLERS::<$_> }
@@ -25,7 +25,7 @@ multi sub ref(\this) {
 
 =head1 NAME
 
-P5ref - Implement Perl's ref() built-in
+Raku port of Perl's ref() built-in
 
 =head1 SYNOPSIS
 
@@ -51,8 +51,8 @@ P5ref - Implement Perl's ref() built-in
 
 =head1 DESCRIPTION
 
-This module tries to mimic the behaviour of the C<ref> of Perl as closely as
-possible.
+This module tries to mimic the behaviour of Perl's C<ref> built-in as
+closely as possible in the Raku Programming Language.
 
 =HEAD1 ORIGINAL PERL 5 DOCUMENTATION
 
@@ -119,6 +119,23 @@ Scalar container (which is pretty hard), or you somehow have gotten ahold of
 a Proxy object.  On all other cases, a Scalar container will be ignored and
 instead the contents of the container will be used.
 
+=head2 $_ no longer accessible from caller's scope
+
+In future language versions of Raku, it will become impossible to access the
+C<$_> variable of the caller's scope, because it will not have been marked as
+a dynamic variable.  So please consider changing:
+
+    ref;
+
+to either:
+
+    ref($_);
+
+or, using the subroutine as a method syntax, with the prefix C<.> shortcut
+to use that scope's C<$_> as the invocant:
+
+    .&ref;
+
 =head1 AUTHOR
 
 Elizabeth Mattijsen <liz@wenzperl.nl>
@@ -128,10 +145,12 @@ Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018-2019 Elizabeth Mattijsen
+Copyright 2018-2020 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
 =end pod
+
+# vim: expandtab shiftwidth=4

@@ -1,7 +1,7 @@
 NAME
 ====
 
-P5ref - Implement Perl's ref() built-in
+Raku port of Perl's ref() built-in
 
 SYNOPSIS
 ========
@@ -29,7 +29,7 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-This module tries to mimic the behaviour of the `ref` of Perl as closely as possible.
+This module tries to mimic the behaviour of Perl's `ref` built-in as closely as possible in the Raku Programming Language.
 
 HEAD1
 =====
@@ -96,6 +96,21 @@ The following strings are currently never returned by `ref` because they have no
 
 Also, since everything in Raku is a (blessed) object, you can only get the `SCALAR` response if you managed to put a Scalar container into another Scalar container (which is pretty hard), or you somehow have gotten ahold of a Proxy object. On all other cases, a Scalar container will be ignored and instead the contents of the container will be used.
 
+$_ no longer accessible from caller's scope
+-------------------------------------------
+
+In future language versions of Raku, it will become impossible to access the `$_` variable of the caller's scope, because it will not have been marked as a dynamic variable. So please consider changing:
+
+    ref;
+
+to either:
+
+    ref($_);
+
+or, using the subroutine as a method syntax, with the prefix `.` shortcut to use that scope's `$_` as the invocant:
+
+    .&ref;
+
 AUTHOR
 ======
 
@@ -106,7 +121,7 @@ Source can be located at: https://github.com/lizmat/P5ref . Comments and Pull Re
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2018-2019 Elizabeth Mattijsen
+Copyright 2018-2020 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
