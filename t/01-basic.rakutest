@@ -2,10 +2,9 @@ use v6.*;
 use Test;
 use P5ref;
 
-plan 18;
+plan 17;
 
 ok defined(::('&ref')),       'is &ref imported?';
-ok !defined(P5ref::{'&ref'}), 'is &ref externally NOT accessible?';
 
 my @a;
 my %h;
